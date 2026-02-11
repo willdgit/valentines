@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Be My Valentine? 💕</title>
     <style>
         * {
@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffecd2 100%);
             min-height: 100vh;
             display: flex;
@@ -20,6 +20,8 @@
             align-items: center;
             overflow: hidden;
             position: relative;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
 
         /* Floating hearts animation */
@@ -54,8 +56,16 @@
             box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
             text-align: center;
             max-width: 500px;
+            width: 90%;
             position: relative;
             z-index: 10;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+                width: 85%;
+            }
         }
 
         h1 {
@@ -65,10 +75,22 @@
             text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
         }
 
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+        }
+
         .emoji {
             font-size: 80px;
             margin: 20px 0;
             animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @media (max-width: 600px) {
+            .emoji {
+                font-size: 60px;
+            }
         }
 
         @keyframes pulse {
@@ -87,6 +109,13 @@
             font-weight: bold;
         }
 
+        @media (max-width: 600px) {
+            p {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+        }
+
         .button-container {
             display: flex;
             gap: 20px;
@@ -97,6 +126,13 @@
             align-items: center;
         }
 
+        @media (max-width: 600px) {
+            .button-container {
+                gap: 15px;
+                min-height: 100px;
+            }
+        }
+
         button {
             padding: 15px 40px;
             font-size: 20px;
@@ -105,7 +141,14 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif;
+        }
+
+        @media (max-width: 600px) {
+            button {
+                padding: 12px 30px;
+                font-size: 18px;
+            }
         }
 
         #yesBtn {
@@ -156,6 +199,12 @@
             animation: bounce 0.5s ease-in-out infinite;
         }
 
+        @media (max-width: 600px) {
+            .celebration h2 {
+                font-size: 48px;
+            }
+        }
+
         @keyframes bounce {
             0%, 100% {
                 transform: translateY(0);
@@ -170,11 +219,23 @@
             font-size: 32px;
         }
 
+        @media (max-width: 600px) {
+            .celebration p {
+                font-size: 24px;
+            }
+        }
+
         .note {
             color: #ff69b4;
             font-size: 14px;
             margin-top: 20px;
             font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .note {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
