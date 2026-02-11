@@ -33,6 +33,23 @@ body {
     100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
 
+@keyframes explodeFloat {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x-move), -150px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+.explode-heart {
+    position: absolute;
+    pointer-events: none;
+    animation: explodeFloat 1.2s ease-out forwards;
+}
+
 .heart {
     position: absolute;
     font-size: 30px;
@@ -223,6 +240,30 @@ function createHeart() {
     setTimeout(() => heart.remove(), 7000);
 }
 
+function explodeFromButton(button) {
+    const rect = button.getBoundingClientRect();
+
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.className = "explode-heart";
+        heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+        // Start at center of button
+        heart.style.left = rect.left + rect.width / 2 + "px";
+        heart.style.top = rect.top + rect.height / 2 + "px";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+
+        // Random sideways drift
+        const randomX = (Math.random() - 0.5) * 200 + "px";
+        heart.style.setProperty("--x-move", randomX);
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 1200);
+    }
+}
+
+
 setInterval(createHeart, 300);
 
 // Button logic
@@ -263,13 +304,16 @@ noBtn.addEventListener("touchstart", (e) => {
 });
 
 yesBtn.addEventListener("click", () => {
-    mainContainer.style.display = "none";
-    celebration.classList.add("active");
 
-    for (let i = 0; i < 50; i++) {
-        setTimeout(createHeart, i * 50);
-    }
+    explodeFromButton(yesBtn);
+
+    setTimeout(() => {
+        mainContainer.style.display = "none";
+        celebration.classList.add("active");
+    }, 400);
+
 });
+
 
 noBtn.addEventListener("click", () => {
     alert("Are you sure :(");
