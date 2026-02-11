@@ -210,22 +210,6 @@ button {
 </div>
 
 <script>
-const backBtn = document.getElementById("backBtn");
-
-backBtn.addEventListener("click", () => {
-    celebration.classList.remove("active");
-
-    // Reset sizes
-    noBtnSize = 1;
-    yesBtnSize = 1;
-    offsetX = 0;
-    offsetY = 0;
-
-    noBtn.style.transform = "";
-    yesBtn.style.transform = "";
-});
-
-
 
 // Floating hearts
 const heartsContainer = document.getElementById('hearts-container');
@@ -291,6 +275,22 @@ yesBtn.addEventListener("click", () => {
 noBtn.addEventListener("click", () => {
     alert("Are you sure :(");
 });
+
+const backBtn = document.getElementById("backBtn");
+
+backBtn.addEventListener("click", () => {
+    celebration.classList.remove("active");
+
+    // Reset sizes
+    noBtnSize = 1;
+    yesBtnSize = 1;
+    offsetX = 0;
+    offsetY = 0;
+
+    noBtn.style.transform = "";
+    yesBtn.style.transform = "";
+});
+
 </script>
 
 </body>
