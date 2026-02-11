@@ -151,7 +151,7 @@ button {
     <p>Will you be my Valentine?</p>
 
     <div class="button-container">
-        <button id="yesBtn">Yes! 💖</button>
+        <button id="yesBtn">Yes 💖</button>
         <button id="noBtn">No 😢</button>
     </div>
 
@@ -159,8 +159,11 @@ button {
 </div>
 
 <div class="celebration" id="celebration">
-    <h2>YAAAAY! 🎉💕✨</h2>
-    <p>I knew you'd say yes! 😍</p>
+    <h2>YAAAAY 🎉💕✨</h2>
+    <p>I knew you'd say yes!!</p>
+    <p>I'm so excited to spend our second Valentine's Day together :)</p>
+    <p>I love you so much</p>
+
     <p style="font-size: 100px; margin-top: 20px;">❤️</p>
 </div>
 
@@ -196,8 +199,8 @@ function moveNoButton() {
     noBtn.style.position = "relative";
 
     // Random movement between -40px and +40px
-    const randomX = (Math.random() - 0.5) * 80;
-    const randomY = (Math.random() - 0.5) * 80;
+    const randomX = (Math.random() - 0.5) * 120;
+    const randomY = (Math.random() - 0.5) * 120;
 
     offsetX += randomX;
     offsetY += randomY;
@@ -227,7 +230,7 @@ yesBtn.addEventListener("click", () => {
 });
 
 noBtn.addEventListener("click", () => {
-    alert("The button ran away! Looks like 'Yes' is your only option! 😘");
+    alert("Are you sure :(");
 });
 </script>
 
