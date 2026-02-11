@@ -148,6 +148,25 @@ button {
     font-style: italic;
 }
 
+#backBtn {
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 40px;
+    border: none;
+    background: white;
+    color: #ff1493;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+#backBtn:hover {
+    transform: scale(1.1);
+    background: #ffe6f2;
+}
+
+
 @media (max-width: 600px) {
     .celebration h2 {
         font-size: 48px;
@@ -186,9 +205,28 @@ button {
     <p>I love you so much</p>
 
     <p style="font-size: 100px; margin-top: 20px;">❤️</p>
+
+    <button id="backBtn">Go Back 💌</button>
 </div>
 
 <script>
+const backBtn = document.getElementById("backBtn");
+
+backBtn.addEventListener("click", () => {
+    celebration.classList.remove("active");
+
+    // Reset sizes
+    noBtnSize = 1;
+    yesBtnSize = 1;
+    offsetX = 0;
+    offsetY = 0;
+
+    noBtn.style.transform = "";
+    yesBtn.style.transform = "";
+});
+
+
+
 // Floating hearts
 const heartsContainer = document.getElementById('hearts-container');
 const heartEmojis = ['❤️','💕','💖','💗','💝','💘'];
