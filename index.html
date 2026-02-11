@@ -109,24 +109,24 @@ button {
 }
 
 .celebration {
-    display: none;
+    display: none; /* hidden by default */
     position: fixed;
-    inset: 0; /* cleaner than top/left/width/height */
-    background: rgba(255, 20, 147, 1); /* solid pink */
+    inset: 0;
+    background: rgba(255, 20, 147, 1);
     z-index: 1000;
 
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
-    text-align: center; /* ensures perfect centering */
+    text-align: center;
     padding: 20px;
 }
 
 .celebration.active {
-    display: flex;
+    display: flex; /* only show when active */
 }
+
 
 .celebration h2 {
     color: white;
