@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffecd2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts animation */
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float linear infinite;
+            pointer-events: none;
+        }
+
+        .container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ff1493;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .emoji {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        p {
+            color: #ff69b4;
+            font-size: 24px;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            position: relative;
+            min-height: 120px;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+            position: relative;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.6);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #ddd, #f0f0f0);
+            color: #666;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        #noBtn:hover {
+            background: linear-gradient(135deg, #ccc, #e0e0e0);
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 20, 147, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .celebration.active {
+            display: flex;
+        }
+
+        .celebration h2 {
+            color: white;
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: bounce 0.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .celebration p {
+            color: white;
+            font-size: 32px;
+        }
+
+        .note {
+            color: #ff69b4;
+            font-size: 14px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div id="hearts-container"></div>
+
+    <div class="container">
+        <h1>Hey Beautiful! 💕</h1>
+        <div class="emoji">🥰</div>
+        <p>Will you be my Valentine?</p>
+        
+        <div class="button-container">
+            <button id="yesBtn">Yes! 💖</button>
+            <button id="noBtn">No 😢</button>
+        </div>
+
+        <p class="note">Try clicking "No"... I dare you! 😏</p>
+    </div>
+
+    <div class="celebration" id="celebration">
+        <h2>YAAAAY! 🎉💕✨</h2>
+        <p>I knew you'd say yes! 😍</p>
+        <p style="font-size: 100px; margin-top: 20px;">❤️</p>
+    </div>
+
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('hearts-container');
+        const heartEmojis = ['❤️', '💕', '💖', '💗', '💝', '💘'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Button logic
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const celebration = document.getElementById('celebration');
+
+        let noBtnSize = 1;
+        let yesBtnSize = 1;
+
+        noBtn.addEventListener('mouseenter', () => {
+            noBtn.style.position = 'absolute';
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * (window.innerHeight - 100);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+
+            // Make "No" button smaller each time
+            noBtnSize *= 0.9;
+            noBtn.style.transform = `scale(${noBtnSize})`;
+
+            // Make "Yes" button bigger each time
+            yesBtnSize *= 1.1;
+            yesBtn.style.transform = `scale(${yesBtnSize})`;
+        });
+
+        // Mobile touch support
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            noBtn.style.position = 'absolute';
+            const x = Math.random() * (window.innerWidth - 200);
+            const y = Math.random() * (window.innerHeight - 100);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+
+            noBtnSize *= 0.9;
+            noBtn.style.transform = `scale(${noBtnSize})`;
+
+            yesBtnSize *= 1.1;
+            yesBtn.style.transform = `scale(${yesBtnSize})`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            celebration.classList.add('active');
+            
+            // Create explosion of hearts
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        });
+
+        // Easter egg: if they somehow click "No"
+        noBtn.addEventListener('click', () => {
+            alert("The button ran away! Looks like 'Yes' is your only option! 😘");
+        });
+    </script>
+</body>
+</html>
