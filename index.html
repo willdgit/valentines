@@ -109,37 +109,32 @@ button {
 }
 
 .celebration {
-    display: none; /* hidden by default */
-    position: fixed;
-    inset: 0;
-    background: rgba(255, 20, 145, 0.196);
-    z-index: 1000;
-
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
+    display: none;
+    background: white;
+    padding: 60px 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
     text-align: center;
-    padding: 20px;
+    max-width: 500px;
+    width: 90%;
 }
 
 .celebration.active {
-    display: flex; /* only show when active */
+    display: block;
 }
 
-
 .celebration h2 {
-    color: white;
-    font-size: 64px;
+    color: #ff1493;
+    font-size: 48px;
     margin-bottom: 20px;
 }
 
 .celebration p {
-    color: white !important; /* force white */
-    opacity: 1 !important;   /* prevent any transparency */
-    font-size: 32px;
+    color: #ff69b4;
+    font-size: 24px;
     margin: 10px 0;
 }
+
 
 .note {
     color: #ff69b4;
@@ -185,7 +180,7 @@ button {
 
 <div id="hearts-container"></div>
 
-<div class="container">
+<div class="container" id="mainContainer">
     <h1>Hi my love!</h1>
     <div class="emoji">💕</div>
     <p>Will you be my Valentine?</p>
@@ -210,6 +205,8 @@ button {
 </div>
 
 <script>
+
+const mainContainer = document.getElementById("mainContainer");
 
 // Floating hearts
 const heartsContainer = document.getElementById('hearts-container');
@@ -266,7 +263,9 @@ noBtn.addEventListener("touchstart", (e) => {
 });
 
 yesBtn.addEventListener("click", () => {
+    mainContainer.style.display = "none";
     celebration.classList.add("active");
+
     for (let i = 0; i < 50; i++) {
         setTimeout(createHeart, i * 50);
     }
@@ -280,6 +279,7 @@ const backBtn = document.getElementById("backBtn");
 
 backBtn.addEventListener("click", () => {
     celebration.classList.remove("active");
+    mainContainer.style.display = "block";
 
     // Reset sizes
     noBtnSize = 1;
