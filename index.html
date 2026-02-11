@@ -262,7 +262,7 @@
             <button id="noBtn">No 😢</button>
         </div>
 
-        <p class="note">You're not allowed to choose "No"</p>
+        <p class="note">You can't choose "No"</p>
     </div>
 
     <div class="celebration" id="celebration">
@@ -303,21 +303,14 @@
         noBtn.addEventListener('mouseenter', () => {
             noBtn.style.position = 'absolute';
             
-            // Make "No" button smaller each time FIRST
+            // Make "No" button smaller each time
             noBtnSize *= 0.9;
             noBtn.style.transform = `scale(${noBtnSize})`;
             
-            // Get button dimensions after scaling
-            const btnWidth = noBtn.offsetWidth * noBtnSize;
-            const btnHeight = noBtn.offsetHeight * noBtnSize;
-            
-            // Calculate safe boundaries with padding
-            const padding = 20;
-            const maxX = window.innerWidth - btnWidth - padding;
-            const maxY = window.innerHeight - btnHeight - padding;
-            
-            const x = Math.max(padding, Math.random() * maxX);
-            const y = Math.max(padding, Math.random() * maxY);
+            // Use safe boundaries - keep away from edges (150px buffer to be safe)
+            const buffer = 150;
+            const x = Math.random() * (window.innerWidth - buffer * 2) + buffer;
+            const y = Math.random() * (window.innerHeight - buffer * 2) + buffer;
             
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
@@ -332,21 +325,14 @@
             e.preventDefault();
             noBtn.style.position = 'absolute';
             
-            // Make "No" button smaller each time FIRST
+            // Make "No" button smaller each time
             noBtnSize *= 0.9;
             noBtn.style.transform = `scale(${noBtnSize})`;
             
-            // Get button dimensions after scaling
-            const btnWidth = noBtn.offsetWidth * noBtnSize;
-            const btnHeight = noBtn.offsetHeight * noBtnSize;
-            
-            // Calculate safe boundaries with padding
-            const padding = 20;
-            const maxX = window.innerWidth - btnWidth - padding;
-            const maxY = window.innerHeight - btnHeight - padding;
-            
-            const x = Math.max(padding, Math.random() * maxX);
-            const y = Math.max(padding, Math.random() * maxY);
+            // Use safe boundaries - keep away from edges (100px buffer for mobile)
+            const buffer = 100;
+            const x = Math.random() * (window.innerWidth - buffer * 2) + buffer;
+            const y = Math.random() * (window.innerHeight - buffer * 2) + buffer;
             
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
